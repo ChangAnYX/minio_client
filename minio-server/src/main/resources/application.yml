@@ -19,7 +19,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.3.66:3306/db_minioweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: Abc123!@#
+    password: 
     hikari:
       # 连接池名
       pool-name: DateHikariCP
@@ -39,13 +39,13 @@ spring:
       connection-test-query: SELECT 1
   mail:
     host: smtp.qq.com
-    username: 2411767821@qq.com
-    password: mhnmdfuwyaypdifc
+    username: 
+    password: 
     default-encoding: UTF-8
 
   redis:
-    host: 192.168.3.66
-    port: 6379
+    host: 
+    port: 
     timeout: 10000ms
     lettuce:
       pool:
@@ -77,13 +77,13 @@ logging:
 
 minio:
   #minio部署的机器ip地址
-  endpoint: 60.208.15.171
+  endpoint: 
   #minio使用的端口
-  port: 9000
+  port: 
   #唯一标识的账户
-  accessKey: admin
+  accessKey: 
   #账户的密码
-  secretKey: abc123456
+  secretKey: 
   #是否使用https
   secure: false
   #测试使用的桶名称
