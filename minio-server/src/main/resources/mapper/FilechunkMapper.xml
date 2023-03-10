@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minio.server.mapper.FilechunkMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.minio.server.pojo.Filechunk">
+        <id column="id" property="id" />
+        <result column="file_name" property="file_name" />
+        <result column="file_url" property="file_url" />
+        <result column="file_size" property="file_size" />
+        <result column="chunkNumber" property="chunkNumber" />
+        <result column="upload_time" property="upload_time" />
+        <result column="upbucker_name" property="upbucker_name" />
+        <result column="Idworker_name" property="Idworker_name" />
+        <result column="uploadId" property="uploadId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, file_name, file_url, file_size, chunkNumber, upload_time, upbucker_name, Idworker_name, uploadId
+    </sql>
+
+</mapper>

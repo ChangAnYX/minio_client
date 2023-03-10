@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minio.server.mapper.FileMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.minio.server.pojo.File">
+        <id column="id" property="id" />
+        <result column="file_name" property="file_name" />
+        <result column="file_type" property="file_type" />
+        <result column="file_date" property="file_date" />
+        <result column="file_del_date" property="file_del_date" />
+        <result column="file_size" property="file_size" />
+        <result column="file_url" property="file_url" />
+        <result column="file_MD5" property="file_MD5" />
+        <result column="is_delete" property="is_delete" />
+        <result column="is_directory" property="is_directory" />
+        <result column="file_bucket_name" property="file_bucket_name" />
+        <result column="file_inbuck_name" property="file_inbuck_name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, file_name, file_type, file_date, file_del_date, file_size, file_url, file_MD5, is_delete, is_directory, file_bucket_name
+    </sql>
+
+    <select id="getFilesBy" resultType="com.minio.server.pojo.File">
+        select id,file_name,file_type,file_size,file_date,is_directory,file_url
+        from t_file
+        where file_bucket_name=#{bucketName} and file_url=#{url} and is_delete=0
+        order by is_directory desc
+            limit #{beginCount}, #{pageCount}
+    </select>
+
+    <select id="getFilesBytype" resultType="com.minio.server.pojo.File">
+        select id,file_name,file_type,file_size,file_date,is_directory
+        from t_file
+        where file_bucket_name=#{bucketName} and is_delete=0 and
+                file_type in (select fileExtendName from t_fileclass
+                              where fileTypeId = #{fileType})
+        order by id desc
+            limit #{beginCount}, #{pageCount}
+    </select>
+
+    <select id="listByName" resultType="com.minio.server.pojo.File">
+        select id,file_name,file_type,file_size,file_date,file_url
+        from t_file
+        where file_bucket_name=#{bucketName} and file_name like #{filename} and is_delete=0 and is_directory=0
+        order by id desc
+            limit #{beginCount}, #{pageCount}
+    </select>
+
+    <select id="sumBybuck"  resultType="java.lang.Long" >
+        select sum(file_size) from t_file where file_bucket_name=#{username} and is_delete=0
+    </select>
+
+    <update id="updatePath">
+        update t_file set file_url = REPLACE(file_url,#{fileOldName},#{fileNewName}) WHERE file_url like #{url} and file_bucket_name = #{bucketName}
+    </update>
+
+    <select id="getfileRecycle" resultType="com.minio.server.pojo.File">
+        select id,file_name,file_type,file_size,file_date,is_directory,file_del_date,file_url
+        from t_file
+        where file_bucket_name=#{bucketName} and is_delete=1
+        order by id desc
+            limit #{beginCount}, #{pageCount}
+    </select>
+
+    <update id="RestoreTrash">
+        UPDATE t_file SET file_del_date=null,is_delete=0
+        WHERE file_bucket_name=#{bucketName} and is_delete=1;
+    </update>
+
+    <update id="UpFilePath">
+        update t_file set file_url = REPLACE(file_url,#{fileOldPath},#{fileNewPath}) WHERE file_url like #{fileURL} and file_bucket_name = #{bucketName}
+    </update>
+
+    <update id="setDelTimeNull">
+        update t_file set file_del_date = null WHERE id =#{id}
+    </update>
+
+</mapper>
