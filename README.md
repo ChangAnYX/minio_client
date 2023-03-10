@@ -1,7 +1,7 @@
 # minio_client
 Springboot+VUE2的基于MinIO的网盘项目-后端
 ##### 前端VUE2项目地址
-https://github.com/ChanAngYX/minio_web
+https://github.com/ChangAnYX/minio_web
 
 当时基于老师的要求并未使用若依等类似后台管理框架
 
