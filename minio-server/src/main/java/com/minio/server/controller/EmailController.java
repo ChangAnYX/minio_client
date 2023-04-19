@@ -38,7 +38,7 @@ public class EmailController {
         String i = String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
         try {
             //发送邮件
-            mailServiceUtils.sendMail("2411767821@qq.com", toEmail, "网盘验证码", i);
+            mailServiceUtils.sendMail("********@qq.com", toEmail, "网盘验证码", i);
             //redis保存验证码
             redisTemplate.opsForValue().set(toEmail, i);
         } catch (Exception e) {
