@@ -128,7 +128,7 @@ CREATE TABLE `t_filechunk`  (
 -- ----------------------------
 -- Records of t_filechunk
 -- ----------------------------
-INSERT INTO `t_filechunk` VALUES (44, '2018101716 翟立彬 查重报告-- 基于Spring Boot VUE在线网盘系统', '/', '924549-2018101716--SpringBootVUEpdf', 924549, 'pdf', 1, '2022-05-19 16:41:37', 'test', '1527207839100100609.pdf', 'c006a3ef-ebb8-4228-84f1-9043627d44eb');
+INSERT INTO `t_filechunk` VALUES (44, '查重报告-- 基于Spring Boot VUE在线网盘系统', '/', '924549-2018101716--SpringBootVUEpdf', 924549, 'pdf', 1, '2022-05-19 16:41:37', 'test', '1527207839100100609.pdf', 'c006a3ef-ebb8-4228-84f1-9043627d44eb');
 
 -- ----------------------------
 -- Table structure for t_fileclass
