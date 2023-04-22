@@ -72,7 +72,7 @@ public class AdminController {
             String objectName = minioUtil.getUsername() + "/" +file.getOriginalFilename();
             System.out.print(objectName);
             minioUtil.upload("userface",objectName,file);
-            String url = "http://60.208.15.171:9000/userface/" + objectName;
+            String url = "http://192.168.2.66:9000/userface/" + objectName;
             Admin admin = adminService.getAdminByUserName(minioUtil.getUsername());
             admin.setUserFace(url);
             adminService.updateById(admin);
